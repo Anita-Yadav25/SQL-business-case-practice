@@ -3060,3 +3060,27 @@ select order_id, order_datetime, dayofweek(order_datetime) as weekend
 from orders
 where dayofweek(order_datetime) in (1,7)
 order by order_id;
+
+-- Q4  Orders with Quantitiy > 1 in any order_item
+
+select * from order_items;
+
+SELECT distinct (order_id), quantity
+FROM order_items
+where quantity > 1;
+
+
+-- Q5 Find the number of customers in each state.
+
+SELECT state,
+       COUNT(*) AS total_customers
+FROM customers
+GROUP BY state
+ORDER BY total_customers DESC;
+
+-- Q6 Total Revenue Generated
+-- Calculate total revenue from delivered orders.
+
+SELECT SUM(order_total) AS total_revenue
+FROM orders
+WHERE order_status = 'DELIVERED';
